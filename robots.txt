@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /
-Disallow: /search
-# 3dczm7fw711SrMreKKCiK39fNZ43tAsS9AMQPjaKjD2NsJt => TIP key: mibaltoalex
