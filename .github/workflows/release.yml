@@ -11,8 +11,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Pin to IPFS
-        id: upload
+      - name: Pin to Pinata IPFS
+        id: upload-pinata
         uses: aquiladev/ipfs-action@master
         with:
           pinName: biokaos-dcentralized
@@ -21,6 +21,16 @@ jobs:
           pinataKey: ${{ secrets.PINATA_API_KEY }}
           pinataSecret: ${{ secrets.PINATA_API_SECRET_KEY }}
           
-      - run: echo "ipfs:${{ steps.upload.outputs.hash }}"
-      - run: echo "CIDv1:${{ steps.upload.outputs.cid }}"
-      - run: echo "IPNS:${{ steps.upload.outputs.ipns }}"
+      - name: Pin to DWEB IPFS
+        id: upload-dweb
+        uses: aquiladev/ipfs-action@master
+        with:
+          host: ipfs.dweb.link
+          key: ${{ steps.upload-pinata.outputs.cid }}
+          path: './w3-mibalx'
+          service: ipfs
+          
+      - run: echo "ipfs:${{ steps.upload-pinata.outputs.hash }}"
+      - run: echo "CIDv1:${{ steps.upload-pinata.outputs.cid }}"
+      - run: echo "ipfs:${{ steps.upload-dweb.outputs.ipfs }}"
+      - run: echo "IPNS:${{ steps.upload-dweb.outputs.ipns }}"
