@@ -20,17 +20,7 @@ jobs:
           service: pinata
           pinataKey: ${{ secrets.PINATA_API_KEY }}
           pinataSecret: ${{ secrets.PINATA_API_SECRET_KEY }}
-          body: |
-            IPFS hash of the deployment:
-            - CIDv0: `${{ steps.upload.outputs.hash }}`
-            - CIDv1: `${{ steps.upload.outputs.cid }}`
-            - IPNS: `${{ steps.upload.outputs.ipns }}`
-
-            You can access the game directly from an IPFS gateway.
-
-            Preferred URLs:
-            - https://${{ steps.upload.outputs.cid }}.ipfs.dweb.link/
-            - [ipfs://${{ steps.upload.outputs.hash }}/](ipfs://${{ steps.upload.outputs.hash }}/)
-
-            Other IPFS gateways:
-            - https://ipfs.io/ipfs/${{ steps.upload.outputs.hash }}
+          
+      - run: echo "ipfs:${{ steps.upload.outputs.hash }}"
+      - run: echo "CIDv1:${{ steps.upload.outputs.cid }}"
+      - run: echo "IPNS:${{ steps.upload.outputs.ipns }}"
