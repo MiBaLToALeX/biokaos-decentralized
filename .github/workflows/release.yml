@@ -23,9 +23,9 @@ jobs:
           
       - name: Pin to DWEB IPFS
         id: upload-dweb
-        uses: aquiladev/ipfs-action@master
+        uses: mibaltoalex/ipfs-action@master
         with:
-          host: dweb.link
+          host: ipfs.io
           key: ${{ steps.upload-pinata.outputs.cid }}
           path: './w3-mibalx'
           service: ipfs
