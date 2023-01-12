@@ -13,7 +13,7 @@ jobs:
 
       - name: Pin to Pinata IPFS
         id: upload-pinata
-        uses: aquiladev/ipfs-action@master
+        uses: mibaltoalex/ipfs-action@master
         with:
           pinName: biokaos-dcentralized
           path: './w3-mibalx'
@@ -25,7 +25,7 @@ jobs:
         id: upload-dweb
         uses: aquiladev/ipfs-action@master
         with:
-          host: ipfs.dweb.link
+          host: dweb.link
           key: ${{ steps.upload-pinata.outputs.cid }}
           path: './w3-mibalx'
           service: ipfs
